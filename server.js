@@ -1,8 +1,11 @@
 import express from "express";
 import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
 import authRoutes from "./routes/auth.js";
 import cors from "cors";
 import mongooseConnect from "./db-utils/mongoose-connection.js";
+import usersRouter from "./routes/users.js";
+import postsRouter from "./routes/posts.js";
 
 dotenv.config();
 
@@ -27,6 +30,8 @@ const authAllApi = (req, res, next) => {
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/users", authAllApi, usersRouter);
+app.use("/api/posts", postsRouter);
 
 // Connect to MongoDB
 await mongooseConnect();

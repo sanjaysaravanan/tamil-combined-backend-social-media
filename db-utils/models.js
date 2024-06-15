@@ -45,4 +45,36 @@ const userSchema = new Schema(
 // Compile the schema into a model
 const User = mongoose.model("User", userSchema);
 
-export { User };
+// Define the Post schema
+const postSchema = new Schema({
+  image: {
+    type: String,
+    required: true,
+  },
+  caption: {
+    type: String,
+    required: true,
+  },
+  id: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  userName: {
+    type: String,
+    required: true,
+  },
+  likes: {
+    type: Number,
+    required: true,
+  },
+  profilePic: {
+    type: String,
+    required: true,
+  },
+});
+
+// Create the Post model
+const Post = mongoose.model("Post", postSchema);
+
+export { User, Post };
